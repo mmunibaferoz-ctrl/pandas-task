@@ -1,0 +1,997 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyM1t4wvU3jj6aQd/7FasBhi",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/mmunibaferoz-ctrl/pandas-task/blob/main/Pandas_task%2Bhands_on\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "48NWt_55qKjp"
+      },
+      "outputs": [],
+      "source": [
+        "import pandas as pd"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import pandas as pd\n",
+        "\n",
+        "#task 1\n",
+        "Data = {\n",
+        "     \"Name\": [\"Ali\",\"Sara\",\"ahemad\",\"Ayesha\",\"zain\"],\n",
+        "     \"Marks\": [70,85,60,95,45]\n",
+        "}\n",
+        "df = pd.DataFrame(Data)\n",
+        "print(df)\n",
+        "\n",
+        "#Find\n",
+        "\n",
+        "Avg = df[\"Marks\"].mean()\n",
+        "print(Avg)\n",
+        "Max = df[\"Marks\"].max()\n",
+        "print(Max)\n",
+        "Min = df[\"Marks\"].min()\n",
+        "print(Min)\n",
+        "\n",
+        "\n",
+        "print(len(df))\n",
+        "\n",
+        "\n",
+        "#Task 2\n",
+        "passed = df[df[\"Marks\"] >= 50]\n",
+        "print(passed)\n",
+        "\n",
+        "Failed = df[df[\"Marks\"] < 50]\n",
+        "print(Failed)\n",
+        "\n",
+        "#Task 3\n",
+        "df[\"city\"] = [\"Karachi\",\"Lahore\",\"Karachi\",\"Islamabad\",\"Karachi\",]\n",
+        "print(df)\n",
+        "\n",
+        "karachi_df = df[df[\"city\"] == \"Karachi\"]\n",
+        "print(karachi_df)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "yqgmCQrBzwKe",
+        "outputId": "697765d7-a288-4cbc-a746-44f69f1c1c99"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "     Name  Marks\n",
+            "0     Ali     70\n",
+            "1    Sara     85\n",
+            "2  ahemad     60\n",
+            "3  Ayesha     95\n",
+            "4    zain     45\n",
+            "71.0\n",
+            "95\n",
+            "45\n",
+            "5\n",
+            "     Name  Marks\n",
+            "0     Ali     70\n",
+            "1    Sara     85\n",
+            "2  ahemad     60\n",
+            "3  Ayesha     95\n",
+            "   Name  Marks\n",
+            "4  zain     45\n",
+            "     Name  Marks       city\n",
+            "0     Ali     70    Karachi\n",
+            "1    Sara     85     Lahore\n",
+            "2  ahemad     60    Karachi\n",
+            "3  Ayesha     95  Islamabad\n",
+            "4    zain     45    Karachi\n",
+            "     Name  Marks     city\n",
+            "0     Ali     70  Karachi\n",
+            "2  ahemad     60  Karachi\n",
+            "4    zain     45  Karachi\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#Task 4\n",
+        "\n",
+        "df = pd.DataFrame({\n",
+        "\n",
+        "\"Name\": [\"Areesha\",\"Amna\",\"zain\",\"muniba\",\"Ayesha\"],\n",
+        "\"Course\": [\"AI\", \"Web\", \"AI\", \"Web\", \"AI\"],\n",
+        "\"Marks\": [70,80,90,40,60]\n",
+        "\n",
+        "})\n",
+        "\n",
+        "print(df)\n",
+        "\n",
+        "\n",
+        "\n",
+        "result = df.groupby(\"Course\")[\"Marks\"].mean()\n",
+        "print(result)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "8ft7JN22a9WT",
+        "outputId": "17c48ecd-f4b3-4ef7-ff36-f2113835b480"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "      Name Course  Marks\n",
+            "0  Areesha     AI     70\n",
+            "1     Amna    Web     80\n",
+            "2     zain     AI     90\n",
+            "3   muniba    Web     40\n",
+            "4   Ayesha     AI     60\n",
+            "Course\n",
+            "AI     73.333333\n",
+            "Web    60.000000\n",
+            "Name: Marks, dtype: float64\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#Task 5\n",
+        "import pandas as pd\n",
+        "import numpy as np\n",
+        "\n",
+        "df = pd.DataFrame({\n",
+        "    \"Name\": [\"Ali\",\"Sara\",\"Ahmed\",\"Ayesha\",\"Zain\"],\n",
+        "    \"Marks\": [80, np.nan, 70, np.nan, 90]\n",
+        "})\n",
+        "print(df)\n",
+        "\n",
+        "print(df.isnull().sum())\n",
+        "\n",
+        "avg = df[\"Marks\"].mean()\n",
+        "print(\"Average:\",avg)\n",
+        "\n",
+        "\n",
+        "df[\"Marks\"] = df[\"Marks\"].fillna(avg)\n",
+        "\n",
+        "print(df)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "mgNC7MEikvXw",
+        "outputId": "3fbff4ee-b2cd-4a24-f8d0-4166f6d44361"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "     Name  Marks\n",
+            "0     Ali   80.0\n",
+            "1    Sara    NaN\n",
+            "2   Ahmed   70.0\n",
+            "3  Ayesha    NaN\n",
+            "4    Zain   90.0\n",
+            "Name     0\n",
+            "Marks    2\n",
+            "dtype: int64\n",
+            "Average: 80.0\n",
+            "     Name  Marks\n",
+            "0     Ali   80.0\n",
+            "1    Sara   80.0\n",
+            "2   Ahmed   70.0\n",
+            "3  Ayesha   80.0\n",
+            "4    Zain   90.0\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import pandas as pd\n",
+        "\n",
+        "data = {\n",
+        "    'Name': ['Ali', 'Sara', 'Ahmed', 'Ayesha', 'Usman', 'Fatima', 'Hassan', 'Zara', 'Bilal', 'Hina'],\n",
+        "    'Age': [18, 19, 20, 18, 21, 19, 20, 18, 22, 19],\n",
+        "    'Marks': [85, 90, 75, 88, 60, 95, 70, 82, 65, 91],\n",
+        "    'City': ['Karachi', 'Lahore', 'Karachi', 'Islamabad', 'Karachi', 'Karachi', 'Islamabad', 'Karachi', 'Islamabad', 'Karachi']\n",
+        "}\n",
+        "\n",
+        "df = pd.DataFrame(data)\n",
+        "df.to_csv('students.csv', index=False)\n",
+        "\n",
+        "print(df)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "-9P33vdkEt0q",
+        "outputId": "a85e9ed8-2a00-4d86-ef93-091041a7cc60"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "     Name  Age  Marks       City\n",
+            "0     Ali   18     85    Karachi\n",
+            "1    Sara   19     90     Lahore\n",
+            "2   Ahmed   20     75    Karachi\n",
+            "3  Ayesha   18     88  Islamabad\n",
+            "4   Usman   21     60    Karachi\n",
+            "5  Fatima   19     95    Karachi\n",
+            "6  Hassan   20     70  Islamabad\n",
+            "7    Zara   18     82    Karachi\n",
+            "8   Bilal   22     65  Islamabad\n",
+            "9    Hina   19     91    Karachi\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "df = pd.read_csv('students.csv')\n",
+        "print(df.head())"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "SxPQTtjsE26Y",
+        "outputId": "d89331f9-ad1a-4226-f564-e58911edbb27"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "     Name  Age  Marks       City\n",
+            "0     Ali   18     85    Karachi\n",
+            "1    Sara   19     90     Lahore\n",
+            "2   Ahmed   20     75    Karachi\n",
+            "3  Ayesha   18     88  Islamabad\n",
+            "4   Usman   21     60    Karachi\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "df = pd.read_csv('students.csv')\n",
+        "print(df.tail())"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "G41lvuqTE7d2",
+        "outputId": "a3ecdecb-e037-4a5f-b072-7635b7d88c97"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "     Name  Age  Marks       City\n",
+            "5  Fatima   19     95    Karachi\n",
+            "6  Hassan   20     70  Islamabad\n",
+            "7    Zara   18     82    Karachi\n",
+            "8   Bilal   22     65  Islamabad\n",
+            "9    Hina   19     91    Karachi\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#(3):shape\n",
+        "\n",
+        "print(df.shape)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "C9Rzd8-IGSno",
+        "outputId": "0f249f1d-d70e-4aa8-8781-fac9e46e7bd1"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "(4, 2)\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#(4):column\n",
+        "print(df.columns)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "rMAJIHvUGa3v",
+        "outputId": "32358b13-f67a-453b-8318-010c3b01611a"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Index(['Name', 'Age', 'Marks', 'City'], dtype='object')\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#(5):dtypes\n",
+        "print(df.dtypes)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "pKwZ31nGG9gv",
+        "outputId": "9a676f74-9c3b-482c-90f3-cc9444c6c0b1"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Name     object\n",
+            "Marks     int64\n",
+            "dtype: object\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#(6):data frame information\n",
+        "print(df.info())"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "9rOQrwT7G9zZ",
+        "outputId": "a0d099d9-c337-4034-fad1-9714ae87c63c"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "<class 'pandas.core.frame.DataFrame'>\n",
+            "RangeIndex: 4 entries, 0 to 3\n",
+            "Data columns (total 2 columns):\n",
+            " #   Column  Non-Null Count  Dtype \n",
+            "---  ------  --------------  ----- \n",
+            " 0   Name    4 non-null      object\n",
+            " 1   Marks   4 non-null      int64 \n",
+            "dtypes: int64(1), object(1)\n",
+            "memory usage: 196.0+ bytes\n",
+            "None\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#(7):Statistical Summary\n",
+        "print(df.describe())"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "PdXgoL70HreU",
+        "outputId": "5efb7f88-d417-4a6a-f9f3-8a43d2c52e8a"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "             Age      Marks\n",
+            "count  10.000000  10.000000\n",
+            "mean   19.400000  80.100000\n",
+            "std     1.349897  11.967084\n",
+            "min    18.000000  60.000000\n",
+            "25%    18.250000  71.250000\n",
+            "50%    19.000000  83.500000\n",
+            "75%    20.000000  89.500000\n",
+            "max    22.000000  95.000000\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#(8):Selecting Columns\n",
+        "print(df[\"Name\"])\n",
+        "print(df[\"Marks\"])"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "cWh7mZJkImsx",
+        "outputId": "05396d1d-3feb-4360-bdca-4a3ac9ccc33e"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "0       Ali\n",
+            "1      Sara\n",
+            "2     Ahmed\n",
+            "3    Ayesha\n",
+            "4     Usman\n",
+            "5    Fatima\n",
+            "6    Hassan\n",
+            "7      Zara\n",
+            "8     Bilal\n",
+            "9      Hina\n",
+            "Name: Name, dtype: object\n",
+            "0    85\n",
+            "1    90\n",
+            "2    75\n",
+            "3    88\n",
+            "4    60\n",
+            "5    95\n",
+            "6    70\n",
+            "7    82\n",
+            "8    65\n",
+            "9    91\n",
+            "Name: Marks, dtype: int64\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# (9):Selecting Rows — loc and iloc\n",
+        "print(df.loc[0])\n",
+        "print(df.loc[0, \"Marks\"])"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "jpI90IJaJI5Q",
+        "outputId": "e93bddf6-d5d1-4574-ce3a-84ec8b712e88"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Name         Ali\n",
+            "Age           18\n",
+            "Marks         85\n",
+            "City     Karachi\n",
+            "Name: 0, dtype: object\n",
+            "85\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(df.iloc[0])\n",
+        "print(df.iloc[0, 1])"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Wyg029RsJrZz",
+        "outputId": "7e1020c1-1d59-4429-a1ad-76cba63d7102"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Name         Ali\n",
+            "Age           18\n",
+            "Marks         85\n",
+            "City     Karachi\n",
+            "Name: 0, dtype: object\n",
+            "18\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#(10):Filtering Data\n",
+        "data = {\n",
+        "    \"Name\": [\"Ali\", \"Sara\", \"Ahmed\", \"Ayesha\"],\n",
+        "    \"Marks\": [45, 90, 75, 40]\n",
+        "}\n",
+        "\n",
+        "df = pd.DataFrame(data)\n",
+        "passed = df[df[\"Marks\"] >= 50]\n",
+        "print(passed)\n",
+        "\n",
+        "Failed = df[df[\"Marks\"] < 50]\n",
+        "print(Failed)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "gnkAF2QIJz39",
+        "outputId": "c6e77f9c-3e72-42e0-9f92-111ad77fa8d6"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "    Name  Marks\n",
+            "1   Sara     90\n",
+            "2  Ahmed     75\n",
+            "     Name  Marks\n",
+            "0     Ali     45\n",
+            "3  Ayesha     40\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#(11):\n",
+        "# Adding a New Column\n",
+        "# The previous df was redefined in cell 'gnkAF2QIJz39' and now has 4 rows.\n",
+        "# The list of grades needs to match the number of rows in df.\n",
+        "df[\"Grade\"] = [\"F\", \"A\", \"B\", \"F\", \"C\", \"A\", \"B\", \"C\", \"F\", \"A\"] # Updated grades to match the 10 rows in the current df\n",
+        "\n",
+        "print(df)\n",
+        "df[\"Bonus Marks\"] = df[\"Marks\"] + 5\n",
+        "\n",
+        "print(df)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "uyEL6i80LFR9",
+        "outputId": "b1711fe0-9c41-49c3-8fba-ec9c960070b5"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "     Name  Age  Marks       City Grade  Bonus Marks\n",
+            "0     Ali   18     40    Karachi     F           45\n",
+            "1    Sara   19     90     Lahore     A           95\n",
+            "2   Ahmed   20     75    Karachi     B           80\n",
+            "3  Ayesha   18     88  Islamabad     F           93\n",
+            "4   Usman   21     60    Karachi     C           65\n",
+            "5  Fatima   19     95    Karachi     A          100\n",
+            "6  Hassan   20     70  Islamabad     B           75\n",
+            "7    Zara   18     82    Karachi     C           87\n",
+            "8   Bilal   22     65  Islamabad     F           70\n",
+            "9    Hina   19     91    Karachi     A           96\n",
+            "     Name  Age  Marks       City Grade  Bonus Marks\n",
+            "0     Ali   18     40    Karachi     F           45\n",
+            "1    Sara   19     90     Lahore     A           95\n",
+            "2   Ahmed   20     75    Karachi     B           80\n",
+            "3  Ayesha   18     88  Islamabad     F           93\n",
+            "4   Usman   21     60    Karachi     C           65\n",
+            "5  Fatima   19     95    Karachi     A          100\n",
+            "6  Hassan   20     70  Islamabad     B           75\n",
+            "7    Zara   18     82    Karachi     C           87\n",
+            "8   Bilal   22     65  Islamabad     F           70\n",
+            "9    Hina   19     91    Karachi     A           96\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#(12):updating Values\n",
+        "df.loc[0, \"Marks\"] = 40\n",
+        "print(df)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "VzlfB93BLsDD",
+        "outputId": "23f6bb75-75dc-4767-e412-86a333269d14"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "     Name  Age  Marks       City\n",
+            "0     Ali   18     40    Karachi\n",
+            "1    Sara   19     90     Lahore\n",
+            "2   Ahmed   20     75    Karachi\n",
+            "3  Ayesha   18     88  Islamabad\n",
+            "4   Usman   21     60    Karachi\n",
+            "5  Fatima   19     95    Karachi\n",
+            "6  Hassan   20     70  Islamabad\n",
+            "7    Zara   18     82    Karachi\n",
+            "8   Bilal   22     65  Islamabad\n",
+            "9    Hina   19     91    Karachi\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#(13):Deleting Rows and Columns\n",
+        "df = df.drop(\"Age\", axis=1)\n",
+        "df = df.drop(0)"
+      ],
+      "metadata": {
+        "id": "L6niv0rzM3VZ"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#(14):Handling Missing Values\n",
+        "data = {\n",
+        "    \"Name\": [\"zubair\", \"fateh\", \"heer\"],\n",
+        "    \"Marks\": [90, None, 85]\n",
+        "}\n",
+        "\n",
+        "df = pd.DataFrame(data)\n",
+        "\n",
+        "print(df)\n",
+        "print(df.isnull())"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "3o9WjhJ-OTIc",
+        "outputId": "3ceef75a-2b20-42d5-c3e9-a75eb62e4da1"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "     Name  Marks\n",
+            "0  zubair   90.0\n",
+            "1   fateh    NaN\n",
+            "2    heer   85.0\n",
+            "    Name  Marks\n",
+            "0  False  False\n",
+            "1  False   True\n",
+            "2  False  False\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#(15):Handling Duplicate Data\n",
+        "print(df.duplicated())\n",
+        "print(df.duplicated().sum())\n",
+        "df = df.drop_duplicates()\n",
+        "\n",
+        "print(df)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "TzJCyfM6Q3HY",
+        "outputId": "2d44ca50-b5e6-41dd-9048-3b62142e4c68"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "0    False\n",
+            "1    False\n",
+            "2    False\n",
+            "dtype: bool\n",
+            "0\n",
+            "     Name  Marks\n",
+            "0  zubair   90.0\n",
+            "1   fateh    NaN\n",
+            "2    heer   85.0\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#(16):sorting data\n",
+        "data = {\n",
+        "    \"Name\": [\"Ali\", \"Sara\", \"Ahmed\"],\n",
+        "    \"Marks\": [70, 95, 80]\n",
+        "}\n",
+        "\n",
+        "df = pd.DataFrame(data)\n",
+        "print(df.sort_values(\"Marks\"))"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "MYg9eirhR8Km",
+        "outputId": "9d55d562-f60b-4158-c96d-ab04b6f0276f"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "    Name  Marks\n",
+            "0    Ali     70\n",
+            "2  Ahmed     80\n",
+            "1   Sara     95\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(df.sort_values(\"Marks\", ascending=False))"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "-lZep7ZISlzR",
+        "outputId": "ab7ed288-2696-47cb-ef22-495c6d9bfe51"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "    Name  Marks\n",
+            "1   Sara     95\n",
+            "2  Ahmed     80\n",
+            "0    Ali     70\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#(17):aggregation and Groupby\n",
+        "marks = df[\"Marks\"]\n",
+        "print(marks.sum())\n",
+        "print(marks.mean())\n",
+        "print(marks.max())\n",
+        "print(marks.min())\n",
+        "print(marks.count())\n",
+        "\n",
+        "\n",
+        "#GROUPBY\n",
+        "\n",
+        "data = {\n",
+        "    'Name': ['Ali', 'Sara', 'Ahmed', 'Ayesha', 'Usman', 'Fatima', 'Hassan', 'Zara', 'Bilal', 'Hina'],\n",
+        "    'Age': [18, 19, 20, 18, 21, 19, 20, 18, 22, 19],\n",
+        "    'Marks': [85, 90, 75, 88, 60, 95, 70, 82, 65, 91],\n",
+        "    'City': ['Karachi', 'Lahore', 'Karachi', 'Islamabad', 'Karachi', 'Karachi', 'Islamabad', 'Karachi', 'Islamabad', 'Karachi']\n",
+        "}\n",
+        "\n",
+        "df = pd.DataFrame(data)\n",
+        "df.to_csv('students.csv', index=False)\n",
+        "\n",
+        "print(df)\n",
+        "# Changed 'Course' to 'City' because 'Course' column does not exist in df\n",
+        "result = df.groupby(\"City\")[\"Marks\"].mean()\n",
+        "\n",
+        "print(result)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "_ti0T1DHStSV",
+        "outputId": "7721abe5-9466-4456-c0ed-2c571e4448a7"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "801\n",
+            "80.1\n",
+            "95\n",
+            "60\n",
+            "10\n",
+            "     Name  Age  Marks       City\n",
+            "0     Ali   18     85    Karachi\n",
+            "1    Sara   19     90     Lahore\n",
+            "2   Ahmed   20     75    Karachi\n",
+            "3  Ayesha   18     88  Islamabad\n",
+            "4   Usman   21     60    Karachi\n",
+            "5  Fatima   19     95    Karachi\n",
+            "6  Hassan   20     70  Islamabad\n",
+            "7    Zara   18     82    Karachi\n",
+            "8   Bilal   22     65  Islamabad\n",
+            "9    Hina   19     91    Karachi\n",
+            "City\n",
+            "Islamabad    74.333333\n",
+            "Karachi      81.333333\n",
+            "Lahore       90.000000\n",
+            "Name: Marks, dtype: float64\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#(18): Combining DataFrames\n",
+        "#concat()\n",
+        "df1 = pd.DataFrame({\n",
+        "    \"Name\": [\"Ali\", \"Sara\"],\n",
+        "    \"Marks\": [80, 90]\n",
+        "})\n",
+        "\n",
+        "df2 = pd.DataFrame({\n",
+        "    \"Name\": [\"Ahmed\", \"Ayesha\"],\n",
+        "    \"Marks\": [75, 85]\n",
+        "})\n",
+        "final_df = pd.concat([df1, df2], ignore_index=True)\n",
+        "\n",
+        "print(final_df)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Q5sOMR1UTpsw",
+        "outputId": "f4fab380-354a-44fd-ae83-e3c338683eaa"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "     Name  Marks\n",
+            "0     Ali     80\n",
+            "1    Sara     90\n",
+            "2   Ahmed     75\n",
+            "3  Ayesha     85\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#merge()\n",
+        "students = pd.DataFrame({\n",
+        "    \"ID\": [1, 2, 3],\n",
+        "    \"Name\": [\"Ali\", \"Sara\", \"Ahmed\"]\n",
+        "})\n",
+        "\n",
+        "marks = pd.DataFrame({\n",
+        "    \"ID\": [1, 2, 3],\n",
+        "    \"Marks\": [80, 90, 75]\n",
+        "})\n",
+        "\n",
+        "final_df = pd.merge(students, marks, on=\"ID\")\n",
+        "\n",
+        "print(final_df)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "qx4fiGqcV9pf",
+        "outputId": "9bf6e5f9-cf4b-4279-9c24-b735cc8e3110"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "   ID   Name  Marks\n",
+            "0   1    Ali     80\n",
+            "1   2   Sara     90\n",
+            "2   3  Ahmed     75\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
